@@ -38,13 +38,13 @@
 #include <urdf/model.h>
 #include <kdl/tree.hpp>
 
-#include "robot_state_publisher/robot_state_publisher.h"
-#include "robot_state_publisher/joint_state_listener.h"
+#include "old_robot_state_publisher/old_robot_state_publisher.h"
+#include "old_robot_state_publisher/joint_state_listener.h"
 
 using namespace std;
 using namespace ros;
 using namespace KDL;
-using namespace robot_state_publisher;
+using namespace old_robot_state_publisher;
 
 JointStateListener::JointStateListener(const KDL::Tree& tree, const MimicMap& m, const urdf::Model& model)
   : state_publisher_(tree, model), mimic_(m)

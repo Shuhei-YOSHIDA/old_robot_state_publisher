@@ -38,14 +38,14 @@
 #include <geometry_msgs/TransformStamped.h>
 #include <tf2_kdl/tf2_kdl.h>
 
-#include "robot_state_publisher/robot_state_publisher.h"
+#include "old_robot_state_publisher/old_robot_state_publisher.h"
 
 using namespace std;
 using namespace ros;
 
-namespace robot_state_publisher {
+namespace old_robot_state_publisher {
 
-RobotStatePublisher::RobotStatePublisher(const KDL::Tree& tree, const urdf::Model& model)
+OldRobotStatePublisher::OldRobotStatePublisher(const KDL::Tree& tree, const urdf::Model& model)
   : model_(model)
 {
   // walk the tree and add segments to segments_
@@ -53,7 +53,7 @@ RobotStatePublisher::RobotStatePublisher(const KDL::Tree& tree, const urdf::Mode
 }
 
 // add children to correct maps
-void RobotStatePublisher::addChildren(const KDL::SegmentMap::const_iterator segment)
+void OldRobotStatePublisher::addChildren(const KDL::SegmentMap::const_iterator segment)
 {
   const std::string& root = GetTreeElementSegment(segment->second).getName();
 
@@ -80,7 +80,7 @@ void RobotStatePublisher::addChildren(const KDL::SegmentMap::const_iterator segm
 
 
 // publish moving transforms
-void RobotStatePublisher::publishTransforms(const map<string, double>& joint_positions, const Time& time, const std::string& tf_prefix)
+void OldRobotStatePublisher::publishTransforms(const map<string, double>& joint_positions, const Time& time, const std::string& tf_prefix)
 {
   ROS_DEBUG("Publishing transforms for moving joints");
   std::vector<geometry_msgs::TransformStamped> tf_transforms;
@@ -103,7 +103,7 @@ void RobotStatePublisher::publishTransforms(const map<string, double>& joint_pos
 }
 
 // publish fixed transforms
-void RobotStatePublisher::publishFixedTransforms(const std::string& tf_prefix, bool use_tf_static)
+void OldRobotStatePublisher::publishFixedTransforms(const std::string& tf_prefix, bool use_tf_static)
 {
   ROS_DEBUG("Publishing transforms for fixed joints");
   std::vector<geometry_msgs::TransformStamped> tf_transforms;

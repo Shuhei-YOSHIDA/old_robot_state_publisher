@@ -34,8 +34,8 @@
 
 /* Author: Wim Meeussen */
 
-#ifndef ROBOT_STATE_PUBLISHER_H
-#define ROBOT_STATE_PUBLISHER_H
+#ifndef OLD_ROBOT_STATE_PUBLISHER_H
+#define OLD_ROBOT_STATE_PUBLISHER_H
 
 #include <ros/ros.h>
 #include <boost/scoped_ptr.hpp>
@@ -47,7 +47,7 @@
 #include <kdl/segment.hpp>
 #include <kdl/tree.hpp>
 
-namespace robot_state_publisher {
+namespace old_robot_state_publisher {
 
 class SegmentPair
 {
@@ -60,16 +60,16 @@ public:
 };
 
 
-class RobotStatePublisher
+class OldRobotStatePublisher
 {
 public:
   /** Constructor
    * \param tree The kinematic model of a robot, represented by a KDL Tree
    */
-  RobotStatePublisher(const KDL::Tree& tree, const urdf::Model& model = urdf::Model());
+  OldRobotStatePublisher(const KDL::Tree& tree, const urdf::Model& model = urdf::Model());
 
   /// Destructor
-  ~RobotStatePublisher(){};
+  ~OldRobotStatePublisher(){};
 
   /** Publish transforms to tf
    * \param joint_positions A map of joint names and joint positions.

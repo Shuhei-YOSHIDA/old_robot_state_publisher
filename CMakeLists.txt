@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(robot_state_publisher)
+project(old_robot_state_publisher)
 
 include(CheckCXXCompilerFlag)
 unset(COMPILER_SUPPORTS_CXX11 CACHE)
@@ -41,7 +41,7 @@ include_directories(include ${catkin_INCLUDE_DIRS} ${orocos_kdl_INCLUDE_DIRS} ${
 link_directories(${orocos_kdl_LIBRARY_DIRS})
 
 add_library(${PROJECT_NAME}_solver
-  src/robot_state_publisher.cpp
+  src/old_robot_state_publisher.cpp
 )
 target_link_libraries(${PROJECT_NAME}_solver ${catkin_LIBRARIES} ${orocos_kdl_LIBRARIES})
 

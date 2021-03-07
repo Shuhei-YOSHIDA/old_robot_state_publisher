@@ -42,7 +42,7 @@
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 
-#include "robot_state_publisher/robot_state_publisher.h"
+#include "old_robot_state_publisher/old_robot_state_publisher.h"
 
 using namespace std;
 using namespace ros;
@@ -51,7 +51,7 @@ using namespace KDL;
 typedef boost::shared_ptr<sensor_msgs::JointState const> JointStateConstPtr;
 typedef std::map<std::string, urdf::JointMimicSharedPtr > MimicMap;
 
-namespace robot_state_publisher {
+namespace old_robot_state_publisher {
 
 class JointStateListener {
 public:
@@ -69,7 +69,7 @@ protected:
 
   std::string tf_prefix_;
   Duration publish_interval_;
-  robot_state_publisher::RobotStatePublisher state_publisher_;
+  old_robot_state_publisher::OldRobotStatePublisher state_publisher_;
   Subscriber joint_state_sub_;
   ros::Timer timer_;
   ros::Time last_callback_time_;

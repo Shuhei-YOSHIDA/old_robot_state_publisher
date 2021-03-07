@@ -34,18 +34,18 @@
 
 #include <kdl_parser/kdl_parser.hpp>
 
-#include "robot_state_publisher/robot_state_publisher.h"
-#include "robot_state_publisher/joint_state_listener.h"
+#include "old_robot_state_publisher/old_robot_state_publisher.h"
+#include "old_robot_state_publisher/joint_state_listener.h"
 
 using namespace std;
 using namespace ros;
 using namespace KDL;
-using namespace robot_state_publisher;
+using namespace old_robot_state_publisher;
 
 int main(int argc, char** argv)
 {
   // Initialize ros
-  ros::init(argc, argv, "robot_state_publisher");
+  ros::init(argc, argv, "old_robot_state_publisher");
   NodeHandle node;
 
   ///////////////////////////////////////// begin deprecation warning
