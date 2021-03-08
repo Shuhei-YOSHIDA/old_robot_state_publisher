@@ -43,11 +43,11 @@
 #include <urdf/model.h>
 #include <kdl_parser/kdl_parser.hpp>
 
-#include "robot_state_publisher/joint_state_listener.h"
+#include "old_robot_state_publisher/joint_state_listener.h"
 
 using namespace ros;
 using namespace tf2_ros;
-using namespace robot_state_publisher;
+using namespace old_robot_state_publisher;
 
 #define EPS 0.01
 

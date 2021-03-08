@@ -38,17 +38,17 @@
 
 #include <kdl_parser/kdl_parser.hpp>
 
-#include "robot_state_publisher/joint_state_listener.h"
-#include "robot_state_publisher/robot_state_publisher.h"
+#include "old_robot_state_publisher/joint_state_listener.h"
+#include "old_robot_state_publisher/old_robot_state_publisher.h"
 
-namespace robot_state_publisher_test
+namespace old_robot_state_publisher_test
 {
-class AccessibleJointStateListener : public robot_state_publisher::JointStateListener
+class AccessibleJointStateListener : public old_robot_state_publisher::JointStateListener
 {
 public:
   AccessibleJointStateListener(
     const KDL::Tree& tree, const MimicMap& m, const urdf::Model& model) :
-      robot_state_publisher::JointStateListener(tree, m, model)
+      old_robot_state_publisher::JointStateListener(tree, m, model)
   {
   }
 
@@ -57,12 +57,12 @@ public:
   }
 };
 
-class AccessibleRobotStatePublisher : public robot_state_publisher::RobotStatePublisher
+class AccessibleOldRobotStatePublisher : public old_robot_state_publisher::OldRobotStatePublisher
 {
 public:
 
-  AccessibleRobotStatePublisher(const KDL::Tree& tree, const urdf::Model& model) :
-    robot_state_publisher::RobotStatePublisher(tree, model)
+  AccessibleOldRobotStatePublisher(const KDL::Tree& tree, const urdf::Model& model) :
+    old_robot_state_publisher::OldRobotStatePublisher(tree, model)
   {
   }
 
@@ -70,7 +70,7 @@ public:
     return model_;
   }
 };
-}  // robot_state_publisher_test 
+}  // old_robot_state_publisher_test 
 
 TEST(TestRobotStatePubSubclass, robot_state_pub_subclass)
 {
@@ -90,12 +90,12 @@ TEST(TestRobotStatePubSubclass, robot_state_pub_subclass)
     }
   }
 
-  robot_state_publisher_test::AccessibleRobotStatePublisher state_pub(tree, model);
+  old_robot_state_publisher_test::AccessibleOldRobotStatePublisher state_pub(tree, model);
 
   EXPECT_EQ(model.name_, state_pub.getModel().name_);
   EXPECT_EQ(model.root_link_, state_pub.getModel().root_link_);
 
-  robot_state_publisher_test::AccessibleJointStateListener state_listener(tree, mimic, model);
+  old_robot_state_publisher_test::AccessibleJointStateListener state_listener(tree, mimic, model);
   EXPECT_TRUE(state_listener.usingTfStatic());
 }
 

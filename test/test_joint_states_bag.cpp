@@ -44,11 +44,11 @@
 #include <urdf/model.h>
 #include <kdl_parser/kdl_parser.hpp>
 
-#include "robot_state_publisher/joint_state_listener.h"
+#include "old_robot_state_publisher/joint_state_listener.h"
 
 using namespace ros;
 using namespace tf2_ros;
-using namespace robot_state_publisher;
+using namespace old_robot_state_publisher;
 
 
 int g_argc;
@@ -103,7 +103,7 @@ TEST_F(TestPublisher, test)
 int main(int argc, char** argv)
 {
   testing::InitGoogleTest(&argc, argv);
-  ros::init(argc, argv, "test_robot_state_publisher");
+  ros::init(argc, argv, "test_old_robot_state_publisher");
 
   g_argc = argc;
   g_argv = argv;
