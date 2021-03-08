@@ -31,7 +31,7 @@ find_package(Eigen3 REQUIRED)
 find_package(urdfdom_headers REQUIRED)
 
 catkin_package(
-  LIBRARIES ${PROJECT_NAME}_solver joint_state_listener
+  LIBRARIES ${PROJECT_NAME}_solver old_joint_state_listener
   INCLUDE_DIRS include
   DEPENDS kdl_parser orocos_kdl roscpp rosconsole rostime sensor_msgs tf2_ros tf2_kdl urdfdom_headers
 )
@@ -45,15 +45,15 @@ add_library(${PROJECT_NAME}_solver
 )
 target_link_libraries(${PROJECT_NAME}_solver ${catkin_LIBRARIES} ${orocos_kdl_LIBRARIES})
 
-add_library(joint_state_listener src/joint_state_listener.cpp)
-target_link_libraries(joint_state_listener ${PROJECT_NAME}_solver ${orocos_kdl_LIBRARIES})
+add_library(old_joint_state_listener src/joint_state_listener.cpp)
+target_link_libraries(old_joint_state_listener ${PROJECT_NAME}_solver ${orocos_kdl_LIBRARIES})
 
 add_executable(${PROJECT_NAME} src/joint_state_listener_node.cpp)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_solver joint_state_listener ${orocos_kdl_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_solver old_joint_state_listener ${orocos_kdl_LIBRARIES})
 
 # compile the same executable using the old name as well
 add_executable(state_publisher src/joint_state_listener_node.cpp)
-target_link_libraries(state_publisher ${PROJECT_NAME}_solver joint_state_listener ${orocos_kdl_LIBRARIES})
+target_link_libraries(state_publisher ${PROJECT_NAME}_solver old_joint_state_listener ${orocos_kdl_LIBRARIES})
 
 # Tests
 
@@ -82,14 +82,14 @@ if (CATKIN_ENABLE_TESTING)
   target_link_libraries(test_joint_states_bag ${catkin_LIBRARIES} ${PROJECT_NAME}_solver)
 
   add_rostest_gtest(test_subclass ${CMAKE_CURRENT_SOURCE_DIR}/test/test_subclass.launch test/test_subclass.cpp)
-  target_link_libraries(test_subclass ${catkin_LIBRARIES} ${PROJECT_NAME}_solver joint_state_listener)
+  target_link_libraries(test_subclass ${catkin_LIBRARIES} ${PROJECT_NAME}_solver old_joint_state_listener)
 
   install(FILES test/one_link.urdf test/pr2.urdf test/two_links_fixed_joint.urdf test/two_links_moving_joint.urdf DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/test)
 
 endif()
 
 # Install library
-install(TARGETS ${PROJECT_NAME}_solver joint_state_listener
+install(TARGETS ${PROJECT_NAME}_solver old_joint_state_listener
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
